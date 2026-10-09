@@ -1,0 +1,885 @@
+:root {
+    --bg: #242424;
+    --app-bg: #08080d;
+    --panel: #0d0d13;
+    --panel-light: #11121a;
+
+    --text: #ffffff;
+    --text-secondary: #9b9ba5;
+    --text-muted: #646570;
+
+    --accent: #20aeea;
+    --accent-light: #48c8ff;
+    --accent-dark: #0878a8;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.12);
+
+    --radius-lg: 30px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+
+    --shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55);
+
+    --transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0, 151, 204, 0.25),
+            transparent 42%
+        ),
+        #242424;
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =========================================================
+   MAIN APPLICATION CONTAINER
+   ========================================================= */
+
+.ai-calendar-app {
+
+    position: relative;
+
+    width: calc(100% - 80px);
+    height: calc(100vh - 80px);
+
+    margin: 40px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0, 123, 170, 0.40),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #08080d 0%,
+            #090b12 55%,
+            #07131b 100%
+        );
+
+    border-radius: 32px;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.65),
+        inset 0 1px rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================================
+   AMBIENT BLUE LIGHT
+   ========================================================= */
+
+.ai-calendar-app::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 280px;
+
+    left: 50%;
+    bottom: -180px;
+
+    transform: translateX(-50%);
+
+    background: rgba(0, 180, 240, 0.35);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.calendar-sidebar {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 82px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 28px 0;
+
+    z-index: 10;
+}
+
+
+/* Logo */
+
+.calendar-logo {
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 35px;
+
+    color: #ffffff;
+}
+
+
+/* Navigation */
+
+.calendar-nav {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.calendar-nav-button {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #777982;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+
+    cursor: pointer;
+
+    transition: all var(--transition);
+}
+
+
+.calendar-nav-button:hover {
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-color: var(--border);
+}
+
+
+.calendar-nav-button.active {
+
+    color: white;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 0 20px rgba(32, 174, 234, 0.45);
+}
+
+
+/* Bottom sidebar */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* Profile */
+
+.profile-avatar {
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.calendar-main {
+
+    position: relative;
+
+    height: 100%;
+
+    margin-left: 82px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   AI HERO SECTION
+   ========================================================= */
+
+.ai-hero {
+
+    margin-top: 65px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* AI Avatar */
+
+.ai-avatar {
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 28px;
+
+    box-shadow:
+        0 0 0 6px rgba(0, 0, 0, 0.35),
+        0 0 45px rgba(38, 133, 255, 0.25);
+
+    animation: avatarFloat 5s ease-in-out infinite;
+}
+
+
+@keyframes avatarFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* Greeting */
+
+.ai-greeting {
+
+    margin: 0;
+
+    font-size: 42px;
+
+    font-weight: 600;
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
+
+    color: #eeeeef;
+}
+
+
+.ai-greeting strong {
+
+    display: block;
+
+    color: white;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+}
+
+
+/* Subtitle */
+
+.ai-subtitle {
+
+    margin-top: 18px;
+
+    max-width: 450px;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   CHAT BOX
+   ========================================================= */
+
+.calendar-chat-wrapper {
+
+    width: min(720px, 75%);
+
+    margin-top: 48px;
+
+    padding: 8px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(45, 170, 220, 0.45),
+            rgba(40, 120, 160, 0.18)
+        );
+
+    box-shadow:
+        0 0 30px rgba(24, 167, 220, 0.10);
+
+    transition: all var(--transition);
+}
+
+
+.calendar-chat-wrapper:focus-within {
+
+    box-shadow:
+        0 0 35px rgba(24, 167, 220, 0.25);
+}
+
+
+/* Inner chat */
+
+.calendar-chat {
+
+    min-height: 120px;
+
+    border-radius: 17px;
+
+    background: #08080d;
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* Placeholder */
+
+.calendar-chat textarea {
+
+    width: 100%;
+
+    min-height: 50px;
+
+    resize: none;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-family: inherit;
+}
+
+
+.calendar-chat textarea::placeholder {
+
+    color: #555760;
+}
+
+.chat-toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 12px;
+}
+
+
+.chat-tools {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.chat-tool {
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #8b8d96;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+
+.chat-tool:hover {
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+/* Send button */
+
+.chat-send {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--accent);
+
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px rgba(32, 174, 234, 0.35);
+
+    transition: var(--transition);
+}
+
+
+.chat-send:hover {
+
+    transform: translateY(-2px);
+
+    background: var(--accent-light);
+
+    box-shadow:
+        0 0 30px rgba(32, 174, 234, 0.55);
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions {
+
+    width: min(720px, 75%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+
+.quick-card {
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(12, 30, 40, 0.45);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.035);
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition);
+}
+
+
+.quick-card:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        rgba(20, 55, 70, 0.55);
+
+    border-color:
+        rgba(32, 174, 234, 0.20);
+}
+
+
+.quick-icon {
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+
+.quick-title {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #eeeeee;
+}
+
+
+.quick-description {
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    color: #6f737d;
+}
+
+
+/* =========================================================
+   CALENDAR EVENT CARD
+   ========================================================= */
+
+.calendar-event {
+
+    width: min(720px, 75%);
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(15px);
+}
+
+
+.event-title {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: white;
+}
+
+
+.event-info {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    color: #858891;
+
+    line-height: 1.7;
+}
+
+
+.event-action {
+
+    margin-top: 14px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.event-button {
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #ddd;
+
+    cursor: pointer;
+}
+
+
+.event-button.primary {
+
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .ai-calendar-app {
+
+        width: calc(100% - 30px);
+
+        height: calc(100vh - 30px);
+
+        margin: 15px;
+
+        border-radius: 24px;
+    }
+
+
+    .calendar-sidebar {
+
+        width: 65px;
+    }
+
+
+    .calendar-main {
+
+        margin-left: 65px;
+    }
+
+
+    .ai-avatar {
+
+        width: 130px;
+        height: 130px;
+    }
+
+
+    .ai-greeting {
+
+        font-size: 32px;
+    }
+
+
+    .calendar-chat-wrapper,
+    .quick-actions,
+    .calendar-event {
+
+        width: 82%;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .ai-calendar-app {
+
+        width: 100%;
+
+        height: 100vh;
+
+        margin: 0;
+
+        border-radius: 0;
+    }
+
+
+    .calendar-sidebar {
+
+        display: none;
+    }
+
+
+    .calendar-main {
+
+        margin-left: 0;
+
+        padding: 0 20px;
+
+        box-sizing: border-box;
+    }
+
+
+    .ai-hero {
+
+        margin-top: 55px;
+    }
+
+
+    .ai-avatar {
+
+        width: 105px;
+        height: 105px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .ai-greeting {
+
+        font-size: 28px;
+    }
+
+
+    .ai-subtitle {
+
+        font-size: 13px;
+
+        max-width: 320px;
+    }
+
+
+    .calendar-chat-wrapper {
+
+        width: 100%;
+
+        margin-top: 35px;
+    }
+
+
+    .quick-actions {
+
+        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .quick-card {
+
+        padding: 15px;
+    }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: rgba(255, 255, 255, 0.20);
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+
+    background: rgba(32, 174, 234, 0.35);
+
+    color: white;
+}
+/* Hide Chainlit default home logo */
+img.logo {
+    display: none !important;
+}

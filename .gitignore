@@ -1,0 +1,32 @@
+# Python
+
+**pycache**/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and credentials
+
+.env
+.env.*
+!.env.example
+token.json
+token_*.json
+credentials/client_secret.json
+
+# Local audio and temporary files
+
+input_audio.wav
+input_audio.pcm16
+*.tmp
+
+# IDE
+
+.vscode/
+.idea/
+
+# OS
+
+.DS_Store
+Thumbs.db
+*.msix

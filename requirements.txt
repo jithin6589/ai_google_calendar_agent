@@ -1,0 +1,9 @@
+chainlit
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+google-auth
+langchain
+langchain-google-genai
+python-dotenv
+faster-whisper
